@@ -68,7 +68,7 @@ export const imageMessageController = async (req, res) => {
         const encodedPrompt = encodeURIComponent(prompt);
 
         // Construct ImageKit AI Generation URL
-        const generatedImageUrl = `${process.env.IMAGEKIT_URL_ENDPOINT}/ik-genimg-prompt-${encodedPrompt}/quickgpt/${Date.now()}.png?tr=w-800,h-800`;
+        const generatedImageUrl = `${process.env.IMAGEKIT_URL_ENDPOINT}/ik-genimg-prompt-${encodedPrompt}/QuickGPT/${Date.now()}.png?tr=w-800,h-800`;
         // Trigger image generation by fetching from ImageKit AI URL
         const aiImageResponse = await axios.get(generatedImageUrl, { responseType: "arraybuffer" }); // arraybuffer - Ensures the image is fetched as raw binary data (not JSON or text).
 
@@ -79,7 +79,7 @@ export const imageMessageController = async (req, res) => {
         const uploadResponse = await imagekit.upload({
             file: base64Image,
             fileName: `${Date.now()}.png`,
-            folder: "quickgpt"
+            folder: "QuickGPT"
         });
 
         const reply = {
